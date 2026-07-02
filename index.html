@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mark Larga Official Website | Professional Photography</title>
+    <meta name="description" content="Mark Larga - Professional photography capturing timeless moments, portraits, weddings, events, nature and travel. Book your session today.">
+    <meta name="author" content="Mark Larga">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dark: '#0A0A0A',
+                        'dark-gray': '#1E1E1E',
+                        'medium-gray': '#333333',
+                        gold: '#D4AF37',
+                        'light-gold': '#F5E7B2',
+                    },
+                    fontFamily: {
+                        poppins: ['Poppins', 'sans-serif'],
+                        playfair: ['Playfair Display', 'serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .glass {
+                background: rgba(255, 255, 255, 0.08);
+                backdrop-filter: blur(12px);
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            .text-shadow-sm {
+                text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            }
+            .hover-gold {
+                transition: all 0.3s ease;
+            }
+            .hover-gold:hover {
+                color: #D4AF37;
+            }
+            .hover-gold-border:hover {
+                border-color: #D4AF37;
+                color: #D4AF37;
+            }
+            .masonry-grid {
+                column-count: 1;
+                column-gap: 1.5rem;
+            }
+            @media (min-width: 640px) {
+                .masonry-grid { column-count: 2; }
+            }
+            @media (min-width: 1024px) {
+                .masonry-grid { column-count: 3; }
+            }
+            @media (min-width: 1280px) {
+                .masonry-grid { column-count: 4; }
+            }
+            .masonry-item {
+                break-inside: avoid;
+                margin-bottom: 1.5rem;
+                overflow: hidden;
+                border-radius: 0.75rem;
+                transition: transform 0.4s ease, box-shadow 0.4s ease;
+            }
+            .masonry-item:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+            }
+            .masonry-item img {
+                transition: transform 0.6s ease;
+            }
+            .masonry-item:hover img {
+                transform: scale(1.05);
+            }
+            .scroll-reveal {
+                opacity: 0;
+                transform: translateY(30px);
+                transition: all 0.7s ease;
+            }
+            .scroll-reveal.active {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            .parallax {
+                background-attachment: fixed;
+                background-position: center;
+                background-size: cover;
+                background-repeat: no-repeat;
+            }
+            .lightbox {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.9);
+                z-index: 9999;
+                justify-content: center;
+                align-items: center;
+                padding: 2rem;
+            }
+            .lightbox.active {
+                display: flex;
+            }
+            .lightbox img {
+                max-width: 90%;
+                max-height: 90%;
+                border-radius: 0.5rem;
+            }
+        }
+
+        * {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0A0A0A;
+            color: #f0f0f0;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navigation -->
+    <header id="navbar" class="fixed w-full z-50 glass transition-all duration-300">
+        <div class="container mx-auto px-4 md:px-8 py-4 flex justify-between items-center">
+            <a href="#" class="text-white text-xl md:text-2xl font-semibold tracking-wider hover-gold transition-colors">Mark Larga</a>
+
+            <nav class="hidden md:flex space-x-8 text-sm font-medium tracking-wide">
+                <a href="#home" class="hover-gold">Home</a>
+                <a href="#portfolio" class="hover-gold">Portfolio</a>
+                <a href="#gallery" class="hover-gold">Gallery</a>
+                <a href="#services" class="hover-gold">Services</a>
+                <a href="#about" class="hover-gold">About</a>
+                <a href="#testimonials" class="hover-gold">Testimonials</a>
+                <a href="#contact" class="hover-gold">Contact</a>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <button id="menuBtn" class="md:hidden text-white text-xl">
+                <i class="fa fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-dark-gray/95 backdrop-blur-lg">
+            <div class="container mx-auto px-4 py-4 flex flex-col space-y-4 text-sm font-medium">
+                <a href="#home" class="hover-gold py-1">Home</a>
+                <a href="#portfolio" class="hover-gold py-1">Portfolio</a>
+                <a href="#gallery" class="hover-gold py-1">Gallery</a>
+                <a href="#services" class="hover-gold py-1">Services</a>
+                <a href="#about" class="hover-gold py-1">About</a>
+                <a href="#testimonials" class="hover-gold py-1">Testimonials</a>
+                <a href="#contact" class="hover-gold py-1">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative h-screen flex items-center justify-center text-center parallax" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://picsum.photos/id/1035/1920/1080');">
+        <div class="z-10 px-6">
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-4 text-shadow-sm tracking-tight">Mark Larga Official Website</h1>
+            <p class="text-lg md:text-xl text-gray-200 max-w-2xl mx-auto mb-8">Capturing Moments. Creating Timeless Stories.</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#portfolio" class="bg-gold hover:bg-light-gold text-dark font-medium px-8 py-3 rounded-full transition-all duration-300 shadow-lg hover:shadow-gold/20">View Portfolio</a>
+                <a href="#contact" class="bg-transparent border border-white hover-gold-border text-white font-medium px-8 py-3 rounded-full transition-all duration-300">Book a Session</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-20 bg-dark">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="text-center mb-12 scroll-reveal">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Portfolio</h2>
+                <p class="text-gray-300 max-w-xl mx-auto">A curated collection of my best work across different styles and settings.</p>
+            </div>
+
+            <!-- Filter Buttons -->
+            <div class="flex flex-wrap justify-center gap-3 mb-10 scroll-reveal">
+                <button class="filter-btn active bg-gold text-dark px-4 py-2 rounded-full text-sm font-medium">All</button>
+                <button class="filter-btn bg-medium-gray hover:bg-gold/20 text-white px-4 py-2 rounded-full text-sm font-medium transition">Portrait</button>
+                <button class="filter-btn bg-medium-gray hover:bg-gold/20 text-white px-4 py-2 rounded-full text-sm font-medium transition">Street</button>
+                <button class="filter-btn bg-medium-gray hover:bg-gold/20 text-white px-4 py-2 rounded-full text-sm font-medium transition">Nature</button>
+                <button class="filter-btn bg-medium-gray hover:bg-gold/20 text-white px-4 py-2 rounded-full text-sm font-medium transition">Wildlife</button>
+                <button class="filter-btn bg-medium-gray hover:bg-gold/20 text-white px-4 py-2 rounded-full text-sm font-medium transition">Landscape</button>
+                <button class="filter-btn bg-medium-gray hover:bg-gold/20 text-white px-4 py-2 rounded-full text-sm font-medium transition">Events</button>
+                <button class="filter-btn bg-medium-gray hover:bg-gold/20 text-white px-4 py-2 rounded-full text-sm font-medium transition">Travel</button>
+            </div>
+
+            <!-- Masonry Grid -->
+            <div class="masonry-grid scroll-reveal">
+                <div class="masonry-item">
+                    <img loading="lazy" src="https://picsum.photos/id/1027/800/600" alt="Portrait Photography" class="w-full h-auto">
+                </div>
+                <div class="masonry-item">
+                    <img loading="lazy" src="https://picsum.photos/id/1025/800/900" alt="Nature Photography" class="w-full h-auto">
+                </div>
+                <div class="masonry-item">
+                    <img loading="lazy" src="https://picsum.photos/id/1039/800/700" alt="Landscape Photography" class="w-full h-auto">
+                </div>
+                <div class="masonry-item">
+                    <img loading="lazy" src="https://picsum.photos/id/1065/800/800" alt="Street Photography" class="w-full h-auto">
+                </div>
+                <div class="masonry-item">
+                    <img loading="lazy" src="https://picsum.photos/id/1074/800/650" alt="Travel Photography" class="w-full h-auto">
+                </div>
+                <div class="masonry-item">
+                    <img loading="lazy" src="https://picsum.photos/id/1082/800/750" alt="Wildlife Photography" class="w-full h-auto">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-dark-gray">
+        <div class="container mx-auto px-4 md:px-8 flex flex-col md:flex-row gap-12 items-center">
+            <div class="w-full md:w-1/2 scroll-reveal">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">About Mark Larga</h2>
+                <p class="text-gray-300 mb-4 leading-relaxed">
+                    I am a passionate professional photographer dedicated to capturing authentic moments with creativity and precision. With a deep appreciation for light, composition, and storytelling, I transform ordinary scenes into timeless works of art.
+                </p>
+                <p class="text-gray-300 mb-6 leading-relaxed">
+                    Whether it’s a portrait, landscape, or special event, my goal is to preserve memories that feel natural, emotional, and uniquely yours. I believe photography is more than just taking pictures — it’s about creating lasting stories.
+                </p>
+                <a href="#contact" class="inline-block bg-gold hover:bg-light-gold text-dark font-medium px-6 py-2 rounded-full transition-all duration-300 shadow-md hover:shadow-gold/20">Learn More</a>
+            </div>
+            <div class="w-full md:w-1/2 scroll-reveal">
+                <div class="rounded-2xl overflow-hidden shadow-xl border border-gray-700">
+                    <img loading="lazy" src="https://picsum.photos/id/1005/800/900" alt="Mark Larga" class="w-full h-auto">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-dark">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="text-center mb-12 scroll-reveal">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">My Services</h2>
+                <p class="text-gray-300 max-w-xl mx-auto">Professional photography services tailored to your needs.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-dark-gray p-8 rounded-2xl border border-gray-700 hover:border-gold/40 transition-all duration-300 shadow-lg hover:shadow-gold/10 scroll-reveal">
+                    <i class="fa fa-user text-gold text-4xl mb-4"></i>
+                    <h3 class="text-xl font-semibold text-white mb-3">Portrait Photography</h3>
+                    <p class="text-gray-300">Elegant and expressive portraits that capture your true personality and style.</p>
+                </div>
+                <div class="bg-dark-gray p-8 rounded-2xl border border-gray-700 hover:border-gold/40 transition-all duration-300 shadow-lg hover:shadow-gold/10 scroll-reveal">
+                    <i class="fa fa-heart text-gold text-4xl mb-4"></i>
+                    <h3 class="text-xl font-semibold text-white mb-3">Wedding Photography</h3>
+                    <p class="text-gray-300">Romantic, timeless coverage of your special day, from intimate moments to grand celebrations.</p>
+                </div>
+                <div class="bg-dark-gray p-8 rounded-2xl border border-gray-700 hover:border-gold/40 transition-all duration-300 shadow-lg hover:shadow-gold/10 scroll-reveal">
+                    <i class="fa fa-calendar-check text-gold text-4xl mb-4"></i>
+                    <h3 class="text-xl font-semibold text-white mb-3">Event Coverage</h3>
+                    <p class="text-gray-300">Professional documentation for corporate events, parties, and milestones.</p>
+                </div>
+                <div class="bg-dark-gray p-8 rounded-2xl border border-gray-700 hover:border-gold/40 transition-all duration-300 shadow-lg hover:shadow-gold/10 scroll-reveal">
+                    <i class="fa fa-shopping-bag text-gold text-4xl mb-4"></i>
+                    <h3 class="text-xl font-semibold text-white mb-3">Product Photography</h3>
+                    <p class="text-gray-300">High-quality images that highlight your products and boost their appeal.</p>
+                </div>
+                <div class="bg-dark-gray p-8 rounded-2xl border border-gray-700 hover:border-gold/40 transition-all duration-300 shadow-lg hover:shadow-gold/10 scroll-reveal">
+                    <i class="fa fa-map-marker-alt text-gold text-4xl mb-4"></i>
+                    <h3 class="text-xl font-semibold text-white mb-3">Travel Photography</h3>
+                    <p class="text-gray-300">Breathtaking landscapes and culture shots that bring destinations to life.</p>
+                </div>
+                <div class="bg-dark-gray p-8 rounded-2xl border border-gray-700 hover:border-gold/40 transition-all duration-300 shadow-lg hover:shadow-gold/10 scroll-reveal">
+                    <i class="fa fa-helicopter text-gold text-4xl mb-4"></i>
+                    <h3 class="text-xl font-semibold text-white mb-3">Drone Photography</h3>
+                    <p class="text-gray-300">Unique aerial perspectives and sweeping views that add depth and scale.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="py-16 bg-dark-gray">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div class="scroll-reveal">
+                    <h3 class="text-4xl md:text-5xl font-bold text-gold mb-2">500+</h3>
+                    <p class="text-gray-300">Photos Captured</p>
+                </div>
+                <div class="scroll-reveal">
+                    <h3 class="text-4xl md:text-5xl font-bold text-gold mb-2">100+</h3>
+                    <p class="text-gray-300">Happy Clients</p>
+                </div>
+                <div class="scroll-reveal">
+                    <h3 class="text-4xl md:text-5xl font-bold text-gold mb-2">5+</h3>
+                    <p class="text-gray-300">Years Experience</p>
+                </div>
+                <div class="scroll-reveal">
+                    <h3 class="text-4xl md:text-5xl font-bold text-gold mb-2">20+</h3>
+                    <p class="text-gray-300">Awards</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-20 bg-dark">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="text-center mb-12 scroll-reveal">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">What Clients Say</h2>
+                <p class="text-gray-300 max-w-xl mx-auto">Trusted by clients across different industries and occasions.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-dark-gray p-8 rounded-2xl border border-gray-700 shadow-lg scroll-reveal">
+                    <div class="flex items-center mb-4">
+                        <img src="https://picsum.photos/id/1027/100/100" alt="Client" class="w-12 h-12 rounded-full object-cover mr-4">
+                        <div>
+                            <h4 class="font-semibold text-white">Sarah Mendez</h4>
+                            <div class="text-gold text-sm">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 italic">"Mark captured our wedding perfectly. Every shot feels natural and emotional — truly timeless."</p>
+                </div>
+                <div class="bg-dark-gray p-8 rounded-2xl border border-gray-700 shadow-lg scroll-reveal">
+                    <div class="flex items-center mb-4">
+                        <img src="https://picsum.photos/id/1074/100/100" alt="Client" class="w-12 h-12 rounded-full object-cover mr-4">
+                        <div>
+                            <h4 class="font-semibold text-white">Robert Cruz</h4>
+                            <div class="text-gold text-sm">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 italic">"Professional, patient, and highly skilled. The portraits turned out even better than I imagined."</p>
+                </div>
+                <div class="bg-dark-gray p-8 rounded-2xl border border-gray-700 shadow-lg scroll-reveal">
+                    <div class="flex items-center mb-4">
+                        <img src="https://picsum.photos/id/1005/100/100" alt="Client" class="w-12 h-12 rounded-full object-cover mr-4">
+                        <div>
+                            <
