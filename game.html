@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Click & Catch Game</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial; }
+        body { background: #f0f4f8; text-align: center; padding-top: 20px; }
+        h1 { color: #2c3e50; margin-bottom: 10px; }
+        #score { font-size: 24px; font-weight: bold; color: #27ae60; margin-bottom: 15px; }
+        #gameArea {
+            width: 90%; max-width: 500px; height: 400px;
+            margin: 0 auto; background: white; border: 3px solid #3498db;
+            border-radius: 12px; position: relative; overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        #target {
+            width: 60px; height: 60px; background: #e74c3c;
+            border-radius: 50%; position: absolute;
+            cursor: pointer; display: flex;
+            align-items: center; justify-content: center;
+            color: white; font-weight: bold; font-size: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            transition: 0.1s ease;
+        }
+        button {
+            margin-top: 15px; padding: 10px 20px; font-size: 18px;
+            background: #3498db; color: white; border: none;
+            border-radius: 8px; cursor: pointer;
+        }
+        button:hover { background: #2980b9; }
+    </style>
+</head>
+<body>
+    <h1>🎯 Click & Catch</h1>
+    <div id="score">Score: 0</div>
+    <div id="gameArea">
+        <div id="target">🎯</div>
+    </div>
+    <button onclick="startGame()">Start Game</button>
+
+    <script>
+        const target = document.getElementById("target");
+        const scoreDisplay = document.getElementById("score");
+        const gameArea = document.getElementById("gameArea");
+        let score = 0;
+        let gameRunning = false;
+        let speed = 900;
+
+        // Ilipat ang target sa random posisyon
+        function moveTarget() {
+            if (!gameRunning) return;
+            const maxX = gameArea.clientWidth-target.clientWidth;
+            const maxY = gameArea.clientHeight-target.clientHeight;
+            const randomX = Math.floor(Math.random()*maxX);
+            const randomY = Math.floor(Math.random()*maxY);
+            target.style.left = randomX+"px";
+            target.style.top = randomY+"px";
+        }
+
+        // Dagdag puntos kapag na-click
+        target.addEventListener("click", () => {
+            if (!gameRunning) return;
+            score++;
+            scoreDisplay.textContent = "Score: "+score;
+            speed = Math.max(250, speed-10); // Mas mabilis habang tumataas score
+            moveTarget();
+        });
+
+        function startGame() {
+            score=0; speed=900; gameRunning=true;
+            scoreDisplay.textContent = "Score: 0";
+            moveTarget();
+            alert("Game Start! I-click ang pulang bilog nang mabilis!");
+        }
+
+        // Patuloy na paggalaw
+        setInterval(() => {
+            if (gameRunning) moveTarget();
+        }, speed);
+    </script>
+</body>
+</html>
