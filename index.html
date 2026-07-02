@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Macc Official WebSite</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2594ff',
+                        darkBg: '#050a18',
+                        glassBg: 'rgba(255,255,255,0.08)',
+                        glassBorder: 'rgba(255,255,255,0.15)',
+                    },
+                    fontFamily: { inter: ['Inter', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-glow { text-shadow: 0 0 10px #2594ff, 0 0 20px #2594ff80; }
+            .glass { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); backdrop-filter: blur(10px); }
+            .neon-border { box-shadow: 0 0 12px #2594ff80; }
+            .smooth-scroll { scroll-behavior: smooth; }
+            .img-8k { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+            .img-8k:hover { transform: scale(1.08); }
+        }
+
+        body {
+            background: #050a18;
+            color: #e0e6f5;
+            transition: all 0.3s ease;
+        }
+
+        .light-mode {
+            background: #f0f4fd;
+            color: #1a2238;
+        }
+
+        /* Star Background */
+        .stars {
+            position: fixed;
+            top:0; left:0;
+            width:100%; height:100%;
+            background: radial-gradient(circle, #fff 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: twinkle 20s linear infinite;
+            opacity: 0.4;
+            z-index: -2;
+        }
+
+        @keyframes twinkle {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-50px); }
+        }
+
+        .loading {
+            position: fixed;
+            inset: 0;
+            background: black;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+
+        .loader {
+            width: 50px; height:50px;
+            border:3px solid transparent;
+            border-top-color: #2594ff;
+            border-radius:50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body class="smooth-scroll font-inter">
+
+    <!-- Loading Screen -->
+    <div class="loading" id="loading">
+        <div class="loader"></div>
+        <p class="mt-4 text-primary">Loading System...</p>
+    </div>
+
+    <!-- Star Background -->
+    <div class="stars"></div>
+
+    <!-- Navbar -->
+    <nav class="fixed w-full top-0 left-0 z-50 glass py-3 px-5">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="text-xl md:text-2xl font-bold">Macc <span class="text-primary text-glow">Official</span></div>
+            <div class="hidden md:flex gap-6">
+                <a href="#home" class="hover:text-primary transition">Home</a>
+                <a href="#features" class="hover:text-primary transition">Features</a>
+                <a href="#gallery" class="hover:text-primary transition">Gallery</a>
+                <a href="#contact" class="hover:text-primary transition">Contact</a>
+            </div>
+            <button onclick="toggleTheme()" class="text-xl p-2 rounded-full hover:bg-white/10">
+                <i class="fa fa-moon-o dark:block light:hidden"></i>
+                <i class="fa fa-sun-o dark:hidden light:block"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section with High-Quality Background -->
+    <section id="home" class="min-h-screen flex items-center justify-center text-center pt-20 px-4 relative overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=3840&q=90" alt="8K High Resolution Background" class="absolute inset-0 w-full h-full object-cover opacity-20">
+        <div class="z-10">
+            <h1 class="text-[clamp(2.2rem,5vw,3.5rem)] font-bold text-glow mb-4">Welcome to<br>Macc Official</h1>
+            <div class="text-primary text-lg mb-4">
+                <p id="time"></p>
+                <p id="date"></p>
+            </div>
+            <p class="max-w-xl mx-auto opacity-90 mb-6">Advanced Technology • Ultra Sharp • 8K Quality • Smooth & Fast Performance</p>
+            <a href="#features" class="inline-block px-6 py-2 rounded-lg border border-primary text-primary hover:bg-primary hover:text-white neon-border transition-transform hover:scale-105">Explore Now</a>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="py-16 px-4 max-w-6xl mx-auto">
+        <h2 class="text-2xl md:text-3xl text-center text-primary mb-10">Advanced Features</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+            <div class="glass p-5 rounded-xl text-center hover:scale-[1.03] transition-transform neon-border">
+                <i class="fa fa-bolt text-3xl text-primary mb-3"></i>
+                <h3 class="text-lg font-semibold mb-2">Ultra Fast</h3>
+                <p class="opacity-80">Smooth and optimized speed.</p>
+            </div>
+            <div class="glass p-5 rounded-xl text-center hover:scale-[1.03] transition-transform neon-border">
+                <i class="fa fa-image text-3xl text-primary mb-3"></i>
+                <h3 class="text-lg font-semibold mb-2">8K Quality</h3>
+                <p class="opacity-80">Sharp and clear like flagship imaging.</p>
+            </div>
+            <div class="glass p-5 rounded-xl text-center hover:scale-[1.03] transition-transform neon-border">
+                <i class="fa fa-mobile text-3xl text-primary mb-3"></i>
+                <h3 class="text-lg font-semibold mb-2">Responsive</h3>
+                <p class="opacity-80">Perfect fit on all screen sizes.</p>
+            </div>
+            <div class="glass p-5 rounded-xl text-center hover:scale-[1.03] transition-transform neon-border">
+                <i class="fa fa-lock text-3xl text-primary mb-3"></i>
+                <h3 class="text-lg font-semibold mb-2">Secure & Free</h3>
+                <p class="opacity-80">Reliable hosting forever.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section with High‑Resolution Images -->
+    <section id="gallery" class="py-16 px-4 max-w-6xl mx-auto">
+        <h2 class="text-2xl md:text-3xl text-center text-primary mb-8">Premium 8K Quality Gallery</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Image 1 -->
+            <div class="glass rounded-xl h-64 overflow-hidden neon-border">
+                <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&auto=format&fit=crop&w=2560&q=95" alt="High Tech Design" class="img-8k">
+            </div>
+            <!-- Image 2 -->
+            <div class="glass rounded-xl h-64 overflow-hidden neon-border">
+                <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2560&q=95" alt="Sharp & Clear" class="img-8k">
+            </div>
+            <!-- Image 3 -->
+            <div class="glass rounded-xl h-64 overflow-hidden neon-border">
+                <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=2560&q=95" alt="Premium Quality" class="img-8k">
+            </div>
+            <!-- Image 4 -->
+            <div class="glass rounded-xl h-64 overflow-hidden neon-border">
+                <img src="https://images.unsplash.com/photo-1507099985932-87a45020a916?ixlib=rb-4.0.3&auto=format&fit=crop&w=2560&q=95" alt="Ultra Resolution" class="img-8k">
+            </div>
+            <!-- Image 5 -->
+            <div class="glass rounded-xl h-64 overflow-hidden neon-border">
+                <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2560&q=95" alt="Clarity & Detail" class="img-8k">
+            </div>
+            <!-- Image 6 -->
+            <div class="glass rounded-xl h-64 overflow-hidden neon-border">
+                <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-4.0.3&auto=format&fit=crop&w=2560&q=95" alt="Smooth & Vivid" class="img-8k">
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-16 px-4 max-w-3xl mx-auto">
+        <h2 class="text-2xl md:text-3xl text-center text-primary mb-8">Get In Touch</h2>
+        <form class="glass p-6 rounded-xl space-y-4 neon-border">
+            <input type="text" placeholder="Your Name" required class="w-full p-3 rounded-lg bg-black/20 border border-white/10 outline-none focus:border-primary">
+            <input type="email" placeholder="Your Email" required class="w-full p-3 rounded-lg bg-black/20 border border-white/10 outline-none focus:border-primary">
+            <textarea rows="3" placeholder="Your Message" required class="w-full p-3 rounded-lg bg-black/20 border border-white/10 outline-none focus:border-primary"></textarea>
+            <button type="submit" class="w-full py-2 rounded-lg bg-primary hover:bg-blue-500 text-white font-medium">Send Message</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center py-4 text-sm opacity-70">
+        © 2026 Macc Official WebSite • Ultra High Resolution • Advanced Technology
+    </footer>
+
+    <!-- Back to Top -->
+    <button id="backTop" class="fixed bottom-6 right-6 w-12 h-12 rounded-full bg-primary text-white text-xl shadow-lg hidden">↑</button>
+
+    <script>
+        // Hide loading
+        window.addEventListener('load', () => {
+            document.getElementById('loading').style.display = 'none';
+        });
+
+        // Live Time & Date
+        function updateTime() {
+            const now = new Date();
+            document.getElementById('time').textContent = now.toLocaleTimeString();
+            document.getElementById('date').textContent = now.toLocaleDateString();
+        }
+        setInterval(updateTime, 1000);
+        updateTime();
+
+        // Light / Dark Mode
+        function toggleTheme() {
+            document.body.classList.toggle('light-mode');
+        }
+
+        // Back to Top
+        const backTop = document.getElementById('backTop');
+        window.addEventListener('scroll', () => {
+            backTop.style.display = window.scrollY > 250 ? 'block' : 'none';
+        });
+        backTop.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
+                e.preventDefault();
+                document.querySelector(a.getAttribute('href')).scrollIntoView({behavior:'smooth'});
+            });
+        });
+
+        // Form Success
+        document.querySelector('form').addEventListener('submit', e => {
+            e.preventDefault();
+            alert('✅ Message sent successfully! Thank you.');
+            e.target.reset();
+        });
+    </script>
+
+</body>
+</html>
